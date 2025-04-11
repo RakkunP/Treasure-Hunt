@@ -39,19 +39,19 @@
       transition: transform 0.3s ease;
     }
 
-    #downloadLink {
-      display: none;
-      position: absolute;
-      background: transparent;
-      padding: 20px 30px;
-      color: #000; /* same as background */
-      text-decoration: none;
-      border: none;
-      font-size: 1.1em;
-      z-index: 999;
-      transition: all 0.3s ease;
-      animation: flicker 2s infinite;
-    }
+      #downloadLink {
+    display: none;
+    position: absolute;
+    background: transparent;
+    padding: 6px 8px; /* smaller hitbox */
+    color: #000; /* same as background */
+    text-decoration: none;
+    border: none;
+    font-size: 0.85em; /* smaller text */
+    z-index: 999;
+    transition: all 0.3s ease;
+    animation: flicker 2s infinite;
+   }
 
     #downloadLink:hover {
       color: #eee;
@@ -85,8 +85,8 @@
       }
 
       #downloadLink {
-        font-size: 1em;
-        padding: 16px 24px;
+      font-size: 0.75em;
+      padding: 4px 6px; /* tighter tap area */
       }
     }
   </style>
