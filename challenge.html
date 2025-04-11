@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mysterious Hunt - Challenge</title>
+  <style>
+    /* Dark, enigmatic theme styling */
+    body {
+      background-color: #000;
+      color: #cfcfcf;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    .container {
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+    }
+    /* Hidden download link styling */
+    #downloadLink {
+      display: none;
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+      background: #333;
+      padding: 10px 15px;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid #555;
+    }
+    /* The clue element that reveals the download link */
+    #clue {
+      cursor: pointer;
+      text-align: center;
+      margin-top: 30px;
+      color: #888;
+    }
+    /* Subtle animation for when the link appears */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .visible {
+      display: block;
+      animation: fadeIn 2s ease-in;
+    }
+    
+    /* Add some misdirection by scattering clickable boxes */
+    .mysterious-box {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+    }
+    /* Random positions for a few boxes */
+    #box1 { top: 20%; left: 10%; }
+    #box2 { top: 40%; left: 70%; }
+    #box3 { top: 70%; left: 30%; }
+    /* When these boxes are hovered, show a cryptic message (not the download link) */
+    .mysterious-box:hover::after {
+      content: "Not here...";
+      position: absolute;
+      top: -25px;
+      left: 0;
+      font-size: 12px;
+      color: #ff6b6b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Challenge</h1>
+    <p style="text-align: center;">
+      Explore the darkness… sometimes, a secret is hidden in plain sight.
+    </p>
+    <!-- A misleading clue to direct users -->
+    <div id="clue">Click here if you dare...</div>
+  </div>
+  
+  <!-- Hidden download link which appears after the clue is clicked -->
+  <a id="downloadLink" href="https://example.com/yourdownloadfile.zip" download>
+    Download the Secret File
+  </a>
+  
+  <!-- Misdirecting clickable boxes -->
+  <div id="box1" class="mysterious-box"></div>
+  <div id="box2" class="mysterious-box"></div>
+  <div id="box3" class="mysterious-box"></div>
+  
+  <script>
+    // When the "clue" element is clicked, reveal the download link
+    document.getElementById('clue').addEventListener('click', function() {
+      // This action simulates solving part of the puzzle
+      document.getElementById('downloadLink').classList.add('visible');
+      document.getElementById('clue').innerText = "The secret is now revealed...";
+    });
+    
+    // Optionally, you could add more interactivity,
+    // such as randomizing positions or requiring multiple clicks.
+  </script>
+</body>
+</html>
