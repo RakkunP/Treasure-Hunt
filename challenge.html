@@ -36,13 +36,14 @@
       margin-top: 30px;
       color: #888;
       font-size: 1.2em;
+      transition: transform 0.3s ease;
     }
 
     #downloadLink {
       display: none;
       position: absolute;
       background: transparent;
-      padding: 20px 30px; /* bigger clickable area */
+      padding: 20px 30px;
       color: #000; /* same as background */
       text-decoration: none;
       border: none;
@@ -74,8 +75,13 @@
         font-size: 1.5em;
       }
 
-      p, #clue {
+      p {
         font-size: 1em;
+      }
+
+      #clue {
+        font-size: 0.6em; /* Smaller clue on mobile */
+        transform: scale(0.9);
       }
 
       #downloadLink {
@@ -98,17 +104,25 @@
     document.addEventListener('DOMContentLoaded', function () {
       const clue = document.getElementById('clue');
       const link = document.getElementById('downloadLink');
+      let clickCount = 0;
 
       clue.addEventListener('click', function () {
-        clue.innerText = "Heh... let's see if you can find it.";
+        clickCount++;
 
-        // Generate random position
-        const x = Math.floor(Math.random() * (window.innerWidth - 200));
-        const y = Math.floor(Math.random() * (window.innerHeight - 100));
+        if (clickCount < 3) {
+          clue.innerText = `You dare again? (${clickCount}/3)`;
+        }
 
-        link.style.left = `${x}px`;
-        link.style.top = `${y}px`;
-        link.style.display = 'block';
+        if (clickCount === 3) {
+          clue.innerText = "Heh... let's see if you can find it.";
+
+          const x = Math.floor(Math.random() * (window.innerWidth - 200));
+          const y = Math.floor(Math.random() * (window.innerHeight - 100));
+
+          link.style.left = `${x}px`;
+          link.style.top = `${y}px`;
+          link.style.display = 'block';
+        }
       });
     });
   </script>
