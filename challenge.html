@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mysterious Hunt - Challenge</title>
   <style>
-    /* Dark, enigmatic theme styling */
     body {
       background-color: #000;
       color: #cfcfcf;
@@ -14,96 +14,103 @@
       overflow: hidden;
       position: relative;
     }
+
     .container {
       padding: 20px;
     }
+
     h1 {
       text-align: center;
       margin-top: 50px;
+      font-size: 2em;
     }
-    /* Hidden download link styling */
-    #downloadLink {
-      display: none;
-      position: absolute;
-      bottom: 50px;
-      right: 50px;
-      background: #333;
-      padding: 10px 15px;
-      color: #fff;
-      text-decoration: none;
-      border: 1px solid #555;
+
+    p {
+      text-align: center;
+      font-size: 1em;
     }
-    /* The clue element that reveals the download link */
+
     #clue {
       cursor: pointer;
       text-align: center;
       margin-top: 30px;
       color: #888;
+      font-size: 1.2em;
     }
-    /* Subtle animation for when the link appears */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .visible {
-      display: block;
-      animation: fadeIn 2s ease-in;
-    }
-    
-    /* Add some misdirection by scattering clickable boxes */
-    .mysterious-box {
+
+    #downloadLink {
+      display: none;
       position: absolute;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      width: 100px;
-      height: 100px;
-      cursor: pointer;
+      background: transparent;
+      padding: 20px 30px; /* bigger clickable area */
+      color: #000; /* same as background */
+      text-decoration: none;
+      border: none;
+      font-size: 1.1em;
+      z-index: 999;
+      transition: all 0.3s ease;
+      animation: flicker 2s infinite;
     }
-    /* Random positions for a few boxes */
-    #box1 { top: 20%; left: 10%; }
-    #box2 { top: 40%; left: 70%; }
-    #box3 { top: 70%; left: 30%; }
-    /* When these boxes are hovered, show a cryptic message (not the download link) */
-    .mysterious-box:hover::after {
-      content: "Not here...";
-      position: absolute;
-      top: -25px;
-      left: 0;
-      font-size: 12px;
-      color: #ff6b6b;
+
+    #downloadLink:hover {
+      color: #eee;
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      border-radius: 5px;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+      20%, 24%, 55% {
+        opacity: 0.1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        margin-top: 30px;
+        font-size: 1.5em;
+      }
+
+      p, #clue {
+        font-size: 1em;
+      }
+
+      #downloadLink {
+        font-size: 1em;
+        padding: 16px 24px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Welcome to the Challenge</h1>
-    <p style="text-align: center;">
-      Explore the darkness… sometimes, a secret is hidden in plain sight.
-    </p>
-    <!-- A misleading clue to direct users -->
+    <p>Explore the darkness… sometimes, a secret is hidden in plain sight.</p>
     <div id="clue">Click here if you dare...</div>
   </div>
-  
-  <!-- Hidden download link which appears after the clue is clicked -->
-  <a id="downloadLink" href="https://example.com/yourdownloadfile.zip" download>
-    Download the Secret File
-  </a>
-  
-  <!-- Misdirecting clickable boxes -->
-  <div id="box1" class="mysterious-box"></div>
-  <div id="box2" class="mysterious-box"></div>
-  <div id="box3" class="mysterious-box"></div>
-  
+
+  <a id="downloadLink" href="https://www.youtube.com/watch?v=rKZyFWnPxA4" download>Download the Secret File</a>
+
   <script>
-    // When the "clue" element is clicked, reveal the download link
-    document.getElementById('clue').addEventListener('click', function() {
-      // This action simulates solving part of the puzzle
-      document.getElementById('downloadLink').classList.add('visible');
-      document.getElementById('clue').innerText = "The secret is now revealed...";
+    document.addEventListener('DOMContentLoaded', function () {
+      const clue = document.getElementById('clue');
+      const link = document.getElementById('downloadLink');
+
+      clue.addEventListener('click', function () {
+        clue.innerText = "Heh... let's see if you can find it.";
+
+        // Generate random position
+        const x = Math.floor(Math.random() * (window.innerWidth - 200));
+        const y = Math.floor(Math.random() * (window.innerHeight - 100));
+
+        link.style.left = `${x}px`;
+        link.style.top = `${y}px`;
+        link.style.display = 'block';
+      });
     });
-    
-    // Optionally, you could add more interactivity,
-    // such as randomizing positions or requiring multiple clicks.
   </script>
 </body>
 </html>
