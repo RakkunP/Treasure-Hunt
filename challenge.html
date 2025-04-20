@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mysterious Hunt - Challenge</title>
   <style>
     body {
@@ -39,24 +39,24 @@
       transition: transform 0.3s ease;
     }
 
-      #downloadLink {
-    display: none;
-    position: absolute;
-    background: transparent;
-    padding: 3px 4px; /* smaller hitbox */
-    color: #000; /* same as background */
-    text-decoration: none;
-    border: none;
-    font-size: 0.85em; /* smaller text */
-    z-index: 999;
-    transition: all 0.3s ease;
-    animation: flicker 2s infinite;
-   }
+    #downloadLink {
+      display: none;
+      position: absolute;
+      background: transparent;
+      padding: 3px 4px;
+      color: #000;
+      text-decoration: none;
+      border: none;
+      font-size: 0.85em;
+      z-index: 999;
+      transition: all 0.3s ease;
+      animation: flicker 2s infinite;
+    }
 
     #downloadLink:hover {
       color: #eee;
       background-color: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
       border-radius: 5px;
     }
 
@@ -67,6 +67,16 @@
       20%, 24%, 55% {
         opacity: 0.1;
       }
+    }
+
+    .decoy {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      z-index: 1;
     }
 
     @media (max-width: 600px) {
@@ -80,13 +90,18 @@
       }
 
       #clue {
-        font-size: 0.6em; /* Smaller clue on mobile */
+        font-size: 0.6em;
         transform: scale(0.9);
       }
 
       #downloadLink {
-      font-size: 0.75em;
-      padding: 4px 6px; /* tighter tap area */
+        font-size: 0.75em;
+        padding: 4px 6px;
+      }
+
+      .decoy {
+        width: 30px;
+        height: 30px;
       }
     }
   </style>
@@ -99,6 +114,17 @@
   </div>
 
   <a id="downloadLink" href="https://www.youtube.com/watch?v=rKZyFWnPxA4" download>Download the Secret File</a>
+
+  <!-- Decoy boxes for confusion -->
+  <script>
+    for (let i = 0; i < 20; i++) {
+      const box = document.createElement('div');
+      box.classList.add('decoy');
+      box.style.top = Math.floor(Math.random() * (window.innerHeight - 50)) + 'px';
+      box.style.left = Math.floor(Math.random() * (window.innerWidth - 50)) + 'px';
+      document.body.appendChild(box);
+    }
+  </script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -116,8 +142,8 @@
         if (clickCount === 3) {
           clue.innerText = "Heh... let's see if you can find it.";
 
-          const x = Math.floor(Math.random() * (window.innerWidth - 200));
-          const y = Math.floor(Math.random() * (window.innerHeight - 100));
+          const x = Math.floor(Math.random() * (window.innerWidth - 100));
+          const y = Math.floor(Math.random() * (window.innerHeight - 40));
 
           link.style.left = `${x}px`;
           link.style.top = `${y}px`;
