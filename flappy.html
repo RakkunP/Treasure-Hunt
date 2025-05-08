@@ -90,7 +90,7 @@
   <canvas id="gameCanvas" width="320" height="480"></canvas>
   <div class="overlay"></div>
   <div id="msg">Press or Tap to Flap!</div>
-  <div id="instruction">Score 50 to move to the next challenge. Avoid the neon pipes!</div>
+  <div id="instruction">Score 150 to move to the next challenge. Avoid the neon pipes!</div>
   <div id="gameOverText">💀 GAME OVER 💀</div>
   <div id="restartHint">Tap to Restart</div>
 
@@ -122,7 +122,7 @@
     let birdY = 150, birdV = 0;
     const GRAVITY = 900;      // px/s²
     const FLAP = -450;        // px/s impulse
-    const MOBILE_FLAP_FACTOR = 0.90; // 80% flap on touch
+    const MOBILE_FLAP_FACTOR = 0.88; // 80% flap on touch
 
     let pipes = [], score = 0;
     let gameOver = false, started = false, restartReady = false;
