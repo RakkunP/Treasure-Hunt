@@ -51,7 +51,10 @@
 <body>
   <h1>The Riddle Awaits</h1>
   <p>Solve the riddle to proceed:</p>
-  <p><em>"I follow you day and night, but I never make a sound. What am I?"</em></p>
+  <p><em>"I watch without eyes, in the silence of the night.
+I travel through wires, yet stay out of sight.
+I can reveal your secrets, though none can see me.
+What am I?"</em></p>
   
   <form id="riddleForm">
     <input type="text" id="answer" placeholder="Enter your answer here">
@@ -66,7 +69,7 @@
       // Trim and convert answer to lower case for case-insensitive comparison
       var userAnswer = document.getElementById('answer').value.trim().toLowerCase();
       // Change the answer below to the correct response you want (for example: 'shadow')
-      var correctAnswer = 'shadow';
+      var correctAnswer = 'spyware';
   
       if (userAnswer === correctAnswer) {
         // If correct, redirect to the challenge page
