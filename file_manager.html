@@ -98,7 +98,7 @@
         71: {}, 72: {}, 73: {},
         74: {
           1: {}, 2: {}, 3: {}, 4: {}, 5: {}, 6: {}, 7: {},
-          8: { "treasure.txt": "Congratulations! You've found the treasure. Claim your prize at https://treasure-link.com" },
+          8: { "treasure.txt": "Congratulations! You've found the treasure.Press OK to claim your prize " },
           9: {}, 10: {}
         },
         75: {}, 76: {}, 77: {}, 78: {}, 79: {}, 70: {}
@@ -131,17 +131,21 @@
   }
 
   function openItem(key) {
-    const item = currentDirectory[key];
+  const item = currentDirectory[key];
 
-    if (typeof item === "string") {
-      alert(item);
-    } else if (typeof item === "object") {
-      previousDirectories.push(currentDirectory);
-      currentDirectory = item;
-      currentPath.push(key);
-      updateBreadcrumbs();
-      renderDirectory();
+  if (typeof item === "string") {
+    const userConfirmed = alert(item);
+    if (key === "treasure.txt") {
+      window.location.href = "https://treasure-link.com";
     }
+  } 
+  else if (typeof item === "object") {
+    previousDirectories.push(currentDirectory);
+    currentDirectory = item;
+    currentPath.push(key);
+    updateBreadcrumbs();
+    renderDirectory();
+  }
   }
 
   function goBack() {
