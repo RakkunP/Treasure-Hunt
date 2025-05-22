@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dark Web Link Hunt</title>
   <style>
-    /* Keyframe animations */
     @keyframes bgPulse { 0%,100% { background-color: #000; } 50% { background-color: #050005; } }
     @keyframes boxFade { 0%,100% { opacity: 0.2; transform: scale(0.9); } 50% { opacity: 0.5; transform: scale(1); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -21,7 +20,6 @@
       position: relative;
     }
 
-    /* Scanline overlay */
     .scanline {
       position:absolute; top:0; left:0;
       width:100%; height:100%;
@@ -81,21 +79,23 @@
     }
 
     #downloadLink {
-      display:none;
-      position:absolute;
-      color:#000;
-      background:transparent;
-      padding:4px 6px;
-      text-decoration:none;
-      font-size:0.85em;
-      z-index:3;
+      display: none;
+      position: absolute;
+      background: transparent;
+      padding: 8px 10px;
+      font-size: 12px;
+      color: transparent;
+      text-decoration: none;
+      z-index: 3;
+      border-radius: 4px;
+      transition: all 0.3s ease;
     }
 
     #downloadLink:hover {
-      color:#eee;
-      background-color:rgba(255,255,255,0.05);
-      box-shadow:0 0 10px rgba(255,255,255,0.2);
-      border-radius:5px;
+      background-color: rgba(255,255,255,0.05);
+      color: #00ff00;
+      box-shadow: 0 0 10px rgba(0,255,0,0.5);
+      text-shadow: 0 0 5px #0f0;
     }
 
     .tooltip {
@@ -127,7 +127,9 @@
     <div id="clue">Click here if you dare...</div>
   </div>
 
-  <a id="meow.exe" href="file_manager.html"> Found me :3 </a>
+  <!-- Stealthy hidden link -->
+  <a id="downloadLink" href="file_manager.html">Found me :3</a>
+
   <div id="tooltip" class="tooltip"></div>
 
   <script>
@@ -139,11 +141,11 @@
       const messages = ["Not here...", "Keep looking.", "Wrong box.", "Try again."];
       const zones = [];
 
-      // After DOM loaded, compute exclusion zones
+      // Exclusion zones
       const cr = clue.getBoundingClientRect();
       zones.push({ x1: cr.left - 30, y1: cr.top - 30, x2: cr.right + 30, y2: cr.bottom + 30 });
 
-      // generate decoys after layout
+      // Generate decoys
       for (let i = 0; i < 20; i++) {
         const d = document.createElement('div'); d.className = 'decoy';
         const x = Math.random() * (window.innerWidth - 60);
@@ -153,14 +155,21 @@
 
         d.addEventListener('mouseenter', e => {
           tooltip.innerText = messages[Math.floor(Math.random() * messages.length)];
-          tooltip.style.left = e.pageX + 10 + 'px'; tooltip.style.top = e.pageY - 25 + 'px'; tooltip.style.opacity = 1;
+          tooltip.style.left = e.pageX + 10 + 'px';
+          tooltip.style.top = e.pageY - 25 + 'px';
+          tooltip.style.opacity = 1;
         });
+
         d.addEventListener('mouseleave', () => tooltip.style.opacity = 0);
+
         d.addEventListener('click', e => {
           tooltip.innerText = messages[Math.floor(Math.random() * messages.length)];
-          tooltip.style.left = e.pageX + 10 + 'px'; tooltip.style.top = e.pageY - 25 + 'px'; tooltip.style.opacity = 1;
+          tooltip.style.left = e.pageX + 10 + 'px';
+          tooltip.style.top = e.pageY - 25 + 'px';
+          tooltip.style.opacity = 1;
           setTimeout(() => tooltip.style.opacity = 0, 1200);
         });
+
         document.body.appendChild(d);
       }
 
@@ -169,11 +178,11 @@
       }
 
       clue.addEventListener('click', () => {
-        if (clicks >= 3) return; // prevent accidental re-trigger
+        if (clicks >= 3) return;
         clicks++;
         if (clicks < 3) {
           clue.innerText = `You dare again? (${clicks}/3)`;
-        } else if (clicks === 3) {
+        } else {
           clue.innerText = 'Now find it in the void.';
           let x, y, tries = 0;
           do {
