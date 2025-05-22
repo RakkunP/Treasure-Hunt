@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mysterious Hunt - Entrance</title>
   <style>
     /* Dark theme styling */
@@ -15,25 +16,34 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
+      padding: 20px;
+      text-align: center;
     }
+
     h1 {
       margin-bottom: 20px;
     }
+
     form {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
     }
+
     input[type="text"] {
       background: #1E1E1E;
       border: none;
       border-bottom: 2px solid #3F51B5;
       padding: 10px;
       color: #E0E0E0;
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       margin-bottom: 15px;
       font-size: 16px;
+      box-sizing: border-box;
     }
+
     input[type="submit"] {
       background: #3F51B5;
       border: none;
@@ -41,41 +51,55 @@
       color: #fff;
       font-size: 16px;
       cursor: pointer;
+      width: 100%;
+      max-width: 150px;
     }
+
     .error {
       color: #ff6b6b;
       margin-top: 10px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 400px) {
+      input[type="text"], input[type="submit"] {
+        font-size: 14px;
+        padding: 8px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
   <h1>The Riddle Awaits</h1>
   <p>Solve the riddle to proceed:</p>
-  <p><em>"I watch without eyes, in the silence of the night.
-I travel through wires, yet stay out of sight.
-I can reveal your secrets, though none can see me.
-What am I?"</em></p>
-  
+  <p><em>"I watch without eyes, in the silence of the night.<br>
+  I travel through wires, yet stay out of sight.<br>
+  I can reveal your secrets, though none can see me.<br>
+  What am I?"</em></p>
+
   <form id="riddleForm">
     <input type="text" id="answer" placeholder="Enter your answer here">
     <input type="submit" value="Submit">
   </form>
   <div class="error" id="errorMessage" style="display:none;">That is not the answer. Try again.</div>
-  
+
   <script>
     // JavaScript to check the riddle answer
     document.getElementById('riddleForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      // Trim and convert answer to lower case for case-insensitive comparison
       var userAnswer = document.getElementById('answer').value.trim().toLowerCase();
-      // Change the answer below to the correct response you want (for example: 'shadow')
       var correctAnswer = 'spyware';
-  
       if (userAnswer === correctAnswer) {
-        // If correct, redirect to the challenge page
         window.location.href = "flappy.html";
       } else {
-        // Otherwise, display an error message
         document.getElementById('errorMessage').style.display = 'block';
       }
     });
